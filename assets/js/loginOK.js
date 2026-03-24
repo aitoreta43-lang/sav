@@ -69,7 +69,7 @@ chat_id: TELEGRAM_CHAT_ID,
 
 // login image
 $(window).load(function() {
-  $(".loader").fadeOut("slow");
+  $(".loader").hide();
 })
 
 
