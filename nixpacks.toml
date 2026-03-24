@@ -1,0 +1,11 @@
+[phases.build]
+  cmds = []
+
+[phases.serve]
+  cmds = []
+
+[staticAssets]
+  mountPath = "/"
+
+[deployment]
+  startCommand = "caddy file-server --browse --root /app"
